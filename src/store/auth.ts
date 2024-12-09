@@ -17,7 +17,8 @@ export const useAuthStore = create<AuthState>((set) => ({
     set({ isLoading: true });
     try {
       const response = await api.post('/user/signin', { email, password });
-      localStorage.setItem('token', response.data.token);
+       console.log(response)
+      localStorage.setItem('token', response.data.jwt);
       set({ user: response.data.user, isLoading: false });
     } catch (error) {
       set({ isLoading: false });
@@ -28,7 +29,8 @@ export const useAuthStore = create<AuthState>((set) => ({
     set({ isLoading: true });
     try {
       const response = await api.post('/user/signup', { name, email, password });
-      localStorage.setItem('token', response.data.token);
+       console.log(response)
+      localStorage.setItem('token', response.data.jwt);
       set({ user: response.data.user, isLoading: false });
     } catch (error) {
       set({ isLoading: false });
