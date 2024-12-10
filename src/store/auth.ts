@@ -1,6 +1,6 @@
-import { create } from 'zustand';
-import { User } from '../types/auth';
-import api from '../lib/api';
+import { create } from "zustand";
+import { User } from "../types/auth";
+import api from "../lib/api";
 
 interface AuthState {
   user: User | null;
@@ -16,9 +16,9 @@ export const useAuthStore = create<AuthState>((set) => ({
   signIn: async (email, password) => {
     set({ isLoading: true });
     try {
-      const response = await api.post('/user/signin', { email, password });
-       console.log(response)
-      localStorage.setItem('token', response.data.jwt);
+      const response = await api.post("/user/signin", { email, password });
+
+      localStorage.setItem("token", response.data.jwt);
       set({ user: response.data.user, isLoading: false });
     } catch (error) {
       set({ isLoading: false });
@@ -28,9 +28,13 @@ export const useAuthStore = create<AuthState>((set) => ({
   signUp: async (name, email, password) => {
     set({ isLoading: true });
     try {
-      const response = await api.post('/user/signup', { name, email, password });
-       console.log(response)
-      localStorage.setItem('token', response.data.jwt);
+      const response = await api.post("/user/signup", {
+        name,
+        email,
+        password,
+      });
+
+      localStorage.setItem("token", response.data.jwt);
       set({ user: response.data.user, isLoading: false });
     } catch (error) {
       set({ isLoading: false });
@@ -38,7 +42,7 @@ export const useAuthStore = create<AuthState>((set) => ({
     }
   },
   signOut: () => {
-    localStorage.removeItem('token');
+    localStorage.removeItem("token");
     set({ user: null });
   },
 }));

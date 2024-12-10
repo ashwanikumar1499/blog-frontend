@@ -1,6 +1,6 @@
-import { create } from 'zustand';
-import { Blog, CreateBlogInput } from '../types/blog';
-import api from '../lib/api';
+import { create } from "zustand";
+import { Blog, CreateBlogInput } from "../types/blog";
+import api from "../lib/api";
 
 interface BlogState {
   blogs: Blog[];
@@ -18,7 +18,7 @@ export const useBlogStore = create<BlogState>((set) => ({
   fetchBlogs: async () => {
     set({ isLoading: true });
     try {
-      const response = await api.get('/blog');
+      const response = await api.get("/blog/bulk");
       set({ blogs: response.data, isLoading: false });
     } catch (error) {
       set({ isLoading: false });
@@ -38,7 +38,7 @@ export const useBlogStore = create<BlogState>((set) => ({
   createBlog: async (input) => {
     set({ isLoading: true });
     try {
-      await api.post('/blog', input);
+      await api.post("/blog", input);
       set({ isLoading: false });
     } catch (error) {
       set({ isLoading: false });
