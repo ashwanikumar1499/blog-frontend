@@ -1,8 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  //baseURL: 'https://backend.ashwanikvofdd.workers.dev/api/v1',
-  baseURL: "http://127.0.0.1:8787/api/v1",
+  baseURL: "https://backend.ashwanikvofdd.workers.dev/api/v1",
 });
 
 api.interceptors.request.use((config) => {
